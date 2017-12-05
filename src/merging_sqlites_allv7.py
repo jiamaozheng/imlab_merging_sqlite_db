@@ -8,7 +8,7 @@ __author__ = "Jiamao Zheng <jiamaoz@yahoo.com>"
 __version__ = "Revision: 0.0.1"
 __date__ = "Date: 2017-11-28"
 
-# usages: python merging_sqlites_v7.py -m GTEx-V7-HapMap-2017-11-29.sqlite -i v7/ -o v7/ -l v7/
+# usages: python merging_sqlites_allv7.py -m GTEx-V7-HapMap-2017-11-29.sqlite -i v7_all/ -o v7_all/ -l v7_all/
 
 class SqliteDBMerged(object):
     def __init_(self):
@@ -109,7 +109,7 @@ class SqliteDBMerged(object):
 
         # model_summaries table (26 rows)
         ccc.execute("DROP TABLE IF EXISTS model_summaries")
-        ccc.execute("CREATE TABLE model_summaries ( gene text NOT NULL, genename text NOT NULL, gene_type text NULL, alpha real NULL, n_snps_in_window integer NULL, n_snps_in_model integer NULL, lambda_min_mse real NULL, test_R2_avg real NULL, test_R2_sd real NULL, cv_R2_avg real NULL, cv_R2_sd real NULL, in_sample_R2 real NULL, nested_cv_fisher_pval real NULL, rho_avg real NULL, rho_se real NULL, rho_zscore real NULL, pred_perf_R2 real NULL, pred_perf_pval real NULL, cv_rho_avg real NULL, cv_rho_se real NULL, cv_rho_avg_squared real NULL, cv_zscore_est real NULL, cv_zscore_pval real NULL, cv_pval_est real NULL, tissue text NULL, PRIMARY KEY (gene, tissue))")
+        ccc.execute("CREATE TABLE model_summaries ( gene text NOT NULL, genename text NOT NULL, gene_type text NULL, alpha real NULL, n_snps_in_window integer NULL, n_snps_in_model integer NULL, lambda_min_mse real NULL, test_R2_avg real NULL, test_R2_sd real NULL, cv_R2_avg real NULL, cv_R2_sd real NULL, in_sample_R2 real NULL, nested_cv_fisher_pval real NULL, rho_avg real NULL, rho_se real NULL, rho_zscore real NULL, rho_avg_squared real NULL, zscore_pval real NULL, cv_rho_avg real NULL, cv_rho_se real NULL, cv_rho_avg_squared real NULL, cv_zscore_est real NULL, cv_zscore_pval real NULL, cv_pval_est real NULL, tissue text NULL, PRIMARY KEY (gene, tissue))")
 
         # construction table 
         ccc.execute("DROP TABLE IF EXISTS construction")
@@ -152,7 +152,7 @@ class SqliteDBMerged(object):
                    csv_writer.writerow(['chromosome', 'cv.seed', 'tissue'])
                 elif table_name == 'model_summaries':
                    csv_writer = csv.writer(open(self.output_path + self.merged_db_name.split('.')[0] + "_" + tissue_name + "_" + table_name + ".csv", "w"))
-                   csv_writer.writerow(['gene', 'genename', 'gene_type', 'alpha', 'n_snps_in_window', 'n.snps.in.model', 'lambda_min_mse', 'test_R2_avg', 'test_R2_sd', 'cv_R2_avg', 'cv_R2_sd', 'in_sample_R2', 'nested_cv_fisher_pval', 'rho_avg', 'rho_se', 'rho_zscore', 'pred.perf.R2', 'pred.perf.pval', 'cv_rho_avg', 'cv_rho_se', 'cv_rho_avg_squared', 'cv_zscore_est', 'cv_zscore_pval', 'cv_pval_est', 'tissue'])
+                   csv_writer.writerow(['gene', 'genename', 'gene_type', 'alpha', 'n_snps_in_window', 'n_snps_in_model', 'lambda_min_mse', 'test_R2_avg', 'test_R2_sd', 'cv_R2_avg', 'cv_R2_sd', 'in_sample_R2', 'nested_cv_fisher_pval', 'rho_avg', 'rho_se', 'rho_zscore', 'rho_avg_squared', 'zscore_pval', 'cv_rho_avg', 'cv_rho_se', 'cv_rho_avg_squared', 'cv_zscore_est', 'cv_zscore_pval', 'cv_pval_est', 'tissue'])
                 elif table_name == 'weights':
                    csv_writer = csv.writer(open(self.output_path + self.merged_db_name.split('.')[0] + "_" + tissue_name + "_" + table_name + ".csv", "w"))
                    csv_writer.writerow(['gene', 'rsid', 'varID', 'ref', 'alt', 'beta', 'tissue'])
