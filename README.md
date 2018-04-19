@@ -1,4 +1,4 @@
-# Imlab-merging-multiple-sqlite-db
+# merge-multiple-sqlite-db
 These scripts are used to merge multiple tissue predictdb sqlite db into one db
 
 
