@@ -4,7 +4,7 @@ These scripts are used to merge multiple tissue predictdb sqlite db into one db
 
 ## Installation
 ```bash 
-https://github.com/jiamaozheng/imlab_merging_sqlite_db.git
+git clone https://https://github.com/jiamaozheng/merge_sqlite_db.git
 ``` 
 
 ## Run  
